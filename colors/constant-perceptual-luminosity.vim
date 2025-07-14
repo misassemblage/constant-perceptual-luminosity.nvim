@@ -70,7 +70,7 @@ endfunction
 " Editor colors
 call s:hi("Normal", s:fg, s:bg, "")
 call s:hi("Cursor", s:bg, s:fg, "")
-call s:hi("CursorLine", "", s:bright_black, "")
+call s:hi("CursorLine", "", s:bg, "")
 call s:hi("CursorColumn", "", s:bright_black, "")
 call s:hi("ColorColumn", "", s:bright_black, "")
 call s:hi("LineNr", s:bright_black, "", "")
