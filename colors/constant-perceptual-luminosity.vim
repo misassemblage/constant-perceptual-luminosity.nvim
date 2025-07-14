@@ -157,7 +157,7 @@ call s:hi("Folded", s:med_white, s:bg_soft, "")
 call s:hi("FoldColumn", s:soft_white, s:bg, "")
 
 " Syntax highlighting - using the extended color palette
-call s:hi("Comment", s:soft_white, "", "italic")
+call s:hi("Comment", s:white, "", "italic")
 call s:hi("Constant", s:light_red, "", "")
 call s:hi("String", s:med_green, "", "")
 call s:hi("Character", s:light_green, "", "")
