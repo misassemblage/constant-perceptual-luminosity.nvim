@@ -114,7 +114,7 @@ call s:hi("Folded", s:bright_black, s:black, "")
 call s:hi("FoldColumn", s:bright_black, s:black, "")
 
 " Syntax highlighting
-call s:hi("Comment", s:bright_black, "", "italic")
+call s:hi("Comment", s:white, "", "italic")
 call s:hi("Constant", s:bright_red, "", "")
 call s:hi("String", s:bright_green, "", "")
 call s:hi("Character", s:bright_green, "", "")
