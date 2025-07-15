@@ -11,6 +11,7 @@ let g:colors_name = "constant_perceptual_luminosity_dark"
 
 " Base colors from the theme
 let s:black       = "#000000"
+let s:gray        = "#202020"
 let s:red         = "#b10b00"
 let s:green       = "#007232"
 let s:yellow      = "#745b00"
@@ -56,6 +57,7 @@ function! s:cterm_color(hex)
   elseif a:hex == s:cyan    | return "6"
   elseif a:hex == s:white   | return "7"
   elseif a:hex == s:bright_black   | return "8"
+  elseiff a:hex == s:grray         | return "8"
   elseif a:hex == s:bright_red     | return "9"
   elseif a:hex == s:bright_green   | return "10"
   elseif a:hex == s:bright_yellow  | return "11"
@@ -70,7 +72,7 @@ endfunction
 " Editor colors
 call s:hi("Normal", s:fg, s:bg, "")
 call s:hi("Cursor", s:bg, s:fg, "")
-call s:hi("CursorLine", "", s:bg, "")
+call s:hi("CursorLine", "", s:gray, "")
 call s:hi("CursorColumn", "", s:bright_black, "")
 call s:hi("ColorColumn", "", s:bright_black, "")
 call s:hi("LineNr", s:bright_black, "", "")
