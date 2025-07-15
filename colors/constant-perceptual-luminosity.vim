@@ -1,6 +1,6 @@
-" Constant Perceptual Luminosity (dark) colorscheme for Vim - Soft Edition
+" Constant Perceptual Luminosity (dark) colorscheme for Vim
 " Based on kitty theme by Aaron Hall
-" Extended with softer, less contrasty colors while maintaining constant perceptual luminosity
+" Colors optimized for constant perceptual luminosity
 
 set background=dark
 hi clear
@@ -9,7 +9,7 @@ if exists("syntax_on")
 endif
 let g:colors_name = "constant_perceptual_luminosity_dark"
 
-" Base colors from the original theme
+" Base colors from the theme
 let s:black       = "#000000"
 let s:red         = "#b10b00"
 let s:green       = "#007232"
@@ -27,51 +27,8 @@ let s:bright_magenta = "#eb00e4"
 let s:bright_cyan    = "#00a3b7"
 let s:bright_white   = "#ababab"
 
-" New softer intermediate colors - maintaining constant perceptual luminosity
-" Darker variants (luminosity ~0.25)
-let s:soft_red       = "#801e1a"
-let s:soft_green     = "#1a5c3a"
-let s:soft_yellow    = "#5c4a1a"
-let s:soft_blue      = "#2a3a8a"
-let s:soft_magenta   = "#6a1a65"
-let s:soft_cyan      = "#1a525a"
-let s:soft_white     = "#555555"
-
-" Medium variants (luminosity ~0.35)
-let s:med_red        = "#a0362f"
-let s:med_green      = "#2f7a4a"
-let s:med_yellow     = "#7a652f"
-let s:med_blue       = "#4a52aa"
-let s:med_magenta    = "#8a2f85"
-let s:med_cyan       = "#2f6a72"
-let s:med_white      = "#666666"
-
-" Lighter variants (luminosity ~0.55)
-let s:light_red      = "#d45545"
-let s:light_green    = "#45a665"
-let s:light_yellow   = "#a68545"
-let s:light_blue     = "#6575d4"
-let s:light_magenta  = "#b545b0"
-let s:light_cyan     = "#4595a2"
-let s:light_white    = "#999999"
-
-" Very light variants (luminosity ~0.65)
-let s:vlight_red     = "#f47a6a"
-let s:vlight_green   = "#6ac285"
-let s:vlight_yellow  = "#c2a56a"
-let s:vlight_blue    = "#8a9af4"
-let s:vlight_magenta = "#d66ad1"
-let s:vlight_cyan    = "#6ab5c2"
-let s:vlight_white   = "#bbbbbb"
-
-" Background variants for less harsh contrast
 let s:bg = s:black
-let s:bg_soft = "#111111"
-let s:bg_med = "#1a1a1a"
-let s:bg_light = "#222222"
-let s:fg = s:med_white
-let s:fg_soft = s:soft_white
-let s:fg_bright = s:light_white
+let s:fg = s:white
 
 " Helper function to set highlight groups
 function! s:hi(group, fg, bg, attr)
@@ -88,7 +45,7 @@ function! s:hi(group, fg, bg, attr)
   exec l:cmd
 endfunction
 
-" Enhanced color to cterm mapping
+" Simple color to cterm mapping
 function! s:cterm_color(hex)
   if a:hex == s:black       | return "0"
   elseif a:hex == s:red     | return "1"
@@ -110,167 +67,136 @@ function! s:cterm_color(hex)
   endif
 endfunction
 
-" Editor colors - using softer variants
+" Editor colors
 call s:hi("Normal", s:fg, s:bg, "")
-call s:hi("Cursor", s:bg, s:light_white, "")
-call s:hi("CursorLine", "", s:bg_soft, "")
-call s:hi("CursorColumn", "", s:bg_soft, "")
-call s:hi("ColorColumn", "", s:bg_soft, "")
-call s:hi("LineNr", s:soft_white, "", "")
-call s:hi("CursorLineNr", s:light_yellow, "", "bold")
-call s:hi("VertSplit", s:bg_light, s:bg_light, "")
-call s:hi("MatchParen", s:vlight_yellow, s:soft_yellow, "bold")
-call s:hi("StatusLine", s:bg, s:med_white, "")
-call s:hi("StatusLineNC", s:soft_white, s:bg_med, "")
-call s:hi("Pmenu", s:fg, s:bg_med, "")
-call s:hi("PmenuSel", s:bg, s:med_yellow, "")
-call s:hi("PmenuSbar", "", s:bg_light, "")
-call s:hi("PmenuThumb", "", s:med_white, "")
-call s:hi("TabLine", s:soft_white, s:bg_med, "")
-call s:hi("TabLineSel", s:bg, s:med_white, "")
-call s:hi("TabLineFill", s:bg_light, s:bg_light, "")
-call s:hi("WildMenu", s:bg, s:med_yellow, "")
+call s:hi("Cursor", s:bg, s:fg, "")
+call s:hi("CursorLine", "", s:bright_black, "")
+call s:hi("CursorColumn", "", s:bright_black, "")
+call s:hi("ColorColumn", "", s:bright_black, "")
+call s:hi("LineNr", s:bright_black, "", "")
+call s:hi("CursorLineNr", s:bright_yellow, "", "bold")
+call s:hi("VertSplit", s:bright_black, s:bright_black, "")
+call s:hi("MatchParen", s:bright_yellow, s:yellow, "bold")
+call s:hi("StatusLine", s:bg, s:fg, "")
+call s:hi("StatusLineNC", s:bright_black, s:bright_black, "")
+call s:hi("Pmenu", s:fg, s:bright_black, "")
+call s:hi("PmenuSel", s:bg, s:bright_yellow, "")
+call s:hi("PmenuSbar", "", s:bright_black, "")
+call s:hi("PmenuThumb", "", s:fg, "")
+call s:hi("TabLine", s:bright_black, s:bright_black, "")
+call s:hi("TabLineSel", s:bg, s:fg, "")
+call s:hi("TabLineFill", s:bright_black, s:bright_black, "")
+call s:hi("WildMenu", s:bg, s:bright_yellow, "")
 
-" Search - softer highlighting
-call s:hi("Search", s:bg, s:med_yellow, "")
-call s:hi("IncSearch", s:bg, s:light_red, "")
+" Search
+call s:hi("Search", s:bg, s:bright_yellow, "")
+call s:hi("IncSearch", s:bg, s:bright_red, "")
 
-" Messages - using medium intensity colors
-call s:hi("ErrorMsg", s:light_red, "", "")
-call s:hi("WarningMsg", s:light_yellow, "", "")
-call s:hi("ModeMsg", s:light_green, "", "")
-call s:hi("MoreMsg", s:light_green, "", "")
-call s:hi("Question", s:light_green, "", "")
+" Messages
+call s:hi("ErrorMsg", s:bright_red, "", "")
+call s:hi("WarningMsg", s:bright_yellow, "", "")
+call s:hi("ModeMsg", s:bright_green, "", "")
+call s:hi("MoreMsg", s:bright_green, "", "")
+call s:hi("Question", s:bright_green, "", "")
 
-" Visual mode - softer selection
-call s:hi("Visual", s:bg, s:med_white, "")
-call s:hi("VisualNOS", s:bg, s:med_white, "")
+" Visual mode
+call s:hi("Visual", s:bg, s:fg, "")
+call s:hi("VisualNOS", s:bg, s:fg, "")
 
-" Diff - using layered colors for better distinction
-call s:hi("DiffAdd", s:light_green, s:soft_green, "")
-call s:hi("DiffChange", s:light_yellow, s:soft_yellow, "")
-call s:hi("DiffDelete", s:light_red, s:soft_red, "")
-call s:hi("DiffText", s:vlight_blue, s:med_blue, "bold")
+" Diff
+call s:hi("DiffAdd", s:bright_green, s:green, "")
+call s:hi("DiffChange", s:bright_yellow, s:yellow, "")
+call s:hi("DiffDelete", s:bright_red, s:red, "")
+call s:hi("DiffText", s:bright_blue, s:blue, "bold")
 
-" Folding - subtle but visible
-call s:hi("Folded", s:med_white, s:bg_soft, "")
-call s:hi("FoldColumn", s:soft_white, s:bg, "")
+" Folding
+call s:hi("Folded", s:bright_black, s:black, "")
+call s:hi("FoldColumn", s:bright_black, s:black, "")
 
-" Syntax highlighting - using the extended color palette
-call s:hi("Comment", s:white, "", "italic")
-call s:hi("Constant", s:light_red, "", "")
-call s:hi("String", s:med_green, "", "")
-call s:hi("Character", s:light_green, "", "")
-call s:hi("Number", s:med_red, "", "")
-call s:hi("Boolean", s:light_red, "", "")
-call s:hi("Float", s:med_red, "", "")
-call s:hi("Identifier", s:med_blue, "", "")
-call s:hi("Function", s:light_blue, "", "")
-call s:hi("Statement", s:med_magenta, "", "")
-call s:hi("Conditional", s:light_magenta, "", "")
-call s:hi("Repeat", s:med_magenta, "", "")
-call s:hi("Label", s:light_magenta, "", "")
-call s:hi("Operator", s:med_cyan, "", "")
-call s:hi("Keyword", s:light_magenta, "", "")
-call s:hi("Exception", s:vlight_magenta, "", "")
-call s:hi("PreProc", s:med_yellow, "", "")
-call s:hi("Include", s:light_yellow, "", "")
-call s:hi("Define", s:med_yellow, "", "")
-call s:hi("Macro", s:light_yellow, "", "")
-call s:hi("PreCondit", s:med_yellow, "", "")
-call s:hi("Type", s:light_cyan, "", "")
-call s:hi("StorageClass", s:med_cyan, "", "")
-call s:hi("Structure", s:light_cyan, "", "")
-call s:hi("Typedef", s:med_cyan, "", "")
-call s:hi("Special", s:light_yellow, "", "")
-call s:hi("SpecialChar", s:vlight_yellow, "", "")
-call s:hi("Tag", s:med_yellow, "", "")
-call s:hi("Delimiter", s:med_white, "", "")
-call s:hi("SpecialComment", s:med_white, "", "")
-call s:hi("Debug", s:light_red, "", "")
-call s:hi("Underlined", s:light_blue, "", "underline")
-call s:hi("Ignore", s:soft_white, "", "")
-call s:hi("Error", s:vlight_red, s:soft_red, "")
-call s:hi("Todo", s:vlight_yellow, s:soft_yellow, "bold")
+" Syntax highlighting
+call s:hi("Comment", s:bright_black, "", "italic")
+call s:hi("Constant", s:bright_red, "", "")
+call s:hi("String", s:bright_green, "", "")
+call s:hi("Character", s:bright_green, "", "")
+call s:hi("Number", s:bright_red, "", "")
+call s:hi("Boolean", s:bright_red, "", "")
+call s:hi("Float", s:bright_red, "", "")
+call s:hi("Identifier", s:bright_blue, "", "")
+call s:hi("Function", s:bright_blue, "", "")
+call s:hi("Statement", s:bright_magenta, "", "")
+call s:hi("Conditional", s:bright_magenta, "", "")
+call s:hi("Repeat", s:bright_magenta, "", "")
+call s:hi("Label", s:bright_magenta, "", "")
+call s:hi("Operator", s:bright_cyan, "", "")
+call s:hi("Keyword", s:bright_magenta, "", "")
+call s:hi("Exception", s:bright_magenta, "", "")
+call s:hi("PreProc", s:bright_yellow, "", "")
+call s:hi("Include", s:bright_yellow, "", "")
+call s:hi("Define", s:bright_yellow, "", "")
+call s:hi("Macro", s:bright_yellow, "", "")
+call s:hi("PreCondit", s:bright_yellow, "", "")
+call s:hi("Type", s:bright_cyan, "", "")
+call s:hi("StorageClass", s:bright_cyan, "", "")
+call s:hi("Structure", s:bright_cyan, "", "")
+call s:hi("Typedef", s:bright_cyan, "", "")
+call s:hi("Special", s:bright_yellow, "", "")
+call s:hi("SpecialChar", s:bright_yellow, "", "")
+call s:hi("Tag", s:bright_yellow, "", "")
+call s:hi("Delimiter", s:fg, "", "")
+call s:hi("SpecialComment", s:bright_black, "", "")
+call s:hi("Debug", s:bright_red, "", "")
+call s:hi("Underlined", s:bright_blue, "", "underline")
+call s:hi("Ignore", s:bright_black, "", "")
+call s:hi("Error", s:bright_red, s:red, "")
+call s:hi("Todo", s:bright_yellow, s:yellow, "bold")
 
-" Spell checking - softer underlines
-call s:hi("SpellBad", s:light_red, "", "undercurl")
-call s:hi("SpellCap", s:light_blue, "", "undercurl")
-call s:hi("SpellLocal", s:light_cyan, "", "undercurl")
-call s:hi("SpellRare", s:light_magenta, "", "undercurl")
+" Spell checking
+call s:hi("SpellBad", s:bright_red, "", "undercurl")
+call s:hi("SpellCap", s:bright_blue, "", "undercurl")
+call s:hi("SpellLocal", s:bright_cyan, "", "undercurl")
+call s:hi("SpellRare", s:bright_magenta, "", "undercurl")
 
-" Git - using medium intensity for subtlety
-call s:hi("GitGutterAdd", s:med_green, "", "")
-call s:hi("GitGutterChange", s:med_yellow, "", "")
-call s:hi("GitGutterDelete", s:med_red, "", "")
-call s:hi("GitGutterChangeDelete", s:light_red, "", "")
+" Git (for plugins like vim-gitgutter)
+call s:hi("GitGutterAdd", s:bright_green, "", "")
+call s:hi("GitGutterChange", s:bright_yellow, "", "")
+call s:hi("GitGutterDelete", s:bright_red, "", "")
+call s:hi("GitGutterChangeDelete", s:bright_red, "", "")
 
-" LSP/CoC - clear but not harsh
-call s:hi("LspDiagnosticsDefaultError", s:light_red, "", "")
-call s:hi("LspDiagnosticsDefaultWarning", s:light_yellow, "", "")
-call s:hi("LspDiagnosticsDefaultInformation", s:light_blue, "", "")
-call s:hi("LspDiagnosticsDefaultHint", s:light_cyan, "", "")
+" LSP/CoC (for language server protocol)
+call s:hi("LspDiagnosticsDefaultError", s:bright_red, "", "")
+call s:hi("LspDiagnosticsDefaultWarning", s:bright_yellow, "", "")
+call s:hi("LspDiagnosticsDefaultInformation", s:bright_blue, "", "")
+call s:hi("LspDiagnosticsDefaultHint", s:bright_cyan, "", "")
 
 " CoC specific
-call s:hi("CocErrorSign", s:light_red, "", "")
-call s:hi("CocWarningSign", s:light_yellow, "", "")
-call s:hi("CocInfoSign", s:light_blue, "", "")
-call s:hi("CocHintSign", s:light_cyan, "", "")
+call s:hi("CocErrorSign", s:bright_red, "", "")
+call s:hi("CocWarningSign", s:bright_yellow, "", "")
+call s:hi("CocInfoSign", s:bright_blue, "", "")
+call s:hi("CocHintSign", s:bright_cyan, "", "")
 
-" Telescope - enhanced with softer backgrounds
-call s:hi("TelescopeSelection", s:bg, s:med_yellow, "")
-call s:hi("TelescopeMultiSelection", s:bg, s:med_green, "")
-call s:hi("TelescopeNormal", s:fg, s:bg_soft, "")
-call s:hi("TelescopeBorder", s:med_white, s:bg_soft, "")
-call s:hi("TelescopePromptBorder", s:light_cyan, s:bg_soft, "")
-call s:hi("TelescopeResultsBorder", s:med_blue, s:bg_soft, "")
-call s:hi("TelescopePreviewBorder", s:med_magenta, s:bg_soft, "")
-call s:hi("TelescopePromptTitle", s:vlight_cyan, s:bg_soft, "bold")
-call s:hi("TelescopeResultsTitle", s:vlight_blue, s:bg_soft, "bold")
-call s:hi("TelescopePreviewTitle", s:vlight_magenta, s:bg_soft, "bold")
-call s:hi("TelescopeMatching", s:vlight_yellow, "", "bold")
+" Telescope (for nvim)
+call s:hi("TelescopeSelection", s:bg, s:bright_yellow, "")
+call s:hi("TelescopeMultiSelection", s:bg, s:bright_green, "")
+call s:hi("TelescopeNormal", s:fg, s:bg, "")
+call s:hi("TelescopeBorder", s:bright_black, s:bg, "")
+call s:hi("TelescopePromptBorder", s:bright_black, s:bg, "")
+call s:hi("TelescopeResultsBorder", s:bright_black, s:bg, "")
+call s:hi("TelescopePreviewBorder", s:bright_black, s:bg, "")
 
-" NERDTree - using varied intensities for hierarchy
-call s:hi("NERDTreeDir", s:light_blue, "", "")
-call s:hi("NERDTreeDirSlash", s:med_blue, "", "")
-call s:hi("NERDTreeOpenable", s:med_green, "", "")
-call s:hi("NERDTreeClosable", s:light_green, "", "")
-call s:hi("NERDTreeFile", s:med_white, "", "")
-call s:hi("NERDTreeExecFile", s:light_green, "", "")
-call s:hi("NERDTreeUp", s:soft_white, "", "")
-call s:hi("NERDTreeCWD", s:light_magenta, "", "")
-call s:hi("NERDTreeHelp", s:soft_white, "", "")
-call s:hi("NERDTreeToggleOn", s:light_green, "", "")
-call s:hi("NERDTreeToggleOff", s:light_red, "", "")
+" NERDTree
+call s:hi("NERDTreeDir", s:bright_blue, "", "")
+call s:hi("NERDTreeDirSlash", s:bright_blue, "", "")
+call s:hi("NERDTreeOpenable", s:bright_green, "", "")
+call s:hi("NERDTreeClosable", s:bright_yellow, "", "")
+call s:hi("NERDTreeFile", s:fg, "", "")
+call s:hi("NERDTreeExecFile", s:bright_green, "", "")
+call s:hi("NERDTreeUp", s:bright_black, "", "")
+call s:hi("NERDTreeCWD", s:bright_magenta, "", "")
+call s:hi("NERDTreeHelp", s:bright_black, "", "")
+call s:hi("NERDTreeToggleOn", s:bright_green, "", "")
+call s:hi("NERDTreeToggleOff", s:bright_red, "", "")
 
-" Additional syntax groups for better language support
-call s:hi("htmlTag", s:med_cyan, "", "")
-call s:hi("htmlEndTag", s:med_cyan, "", "")
-call s:hi("htmlTagName", s:light_cyan, "", "")
-call s:hi("htmlArg", s:med_yellow, "", "")
-call s:hi("htmlString", s:med_green, "", "")
-
-call s:hi("cssClassName", s:light_yellow, "", "")
-call s:hi("cssIdentifier", s:light_blue, "", "")
-call s:hi("cssProperty", s:med_cyan, "", "")
-call s:hi("cssValue", s:med_green, "", "")
-
-call s:hi("jsFunction", s:light_magenta, "", "")
-call s:hi("jsThis", s:light_red, "", "")
-call s:hi("jsArrowFunction", s:med_magenta, "", "")
-call s:hi("jsTemplateString", s:light_green, "", "")
-
-call s:hi("pythonFunction", s:light_blue, "", "")
-call s:hi("pythonBuiltin", s:light_cyan, "", "")
-call s:hi("pythonDecorator", s:med_yellow, "", "")
-call s:hi("pythonString", s:med_green, "", "")
-
-call s:hi("rustKeyword", s:light_magenta, "", "")
-call s:hi("rustLifetime", s:med_cyan, "", "")
-call s:hi("rustMacro", s:light_yellow, "", "")
-call s:hi("rustType", s:light_cyan, "", "")
-
-" Terminal colors (for :terminal) - maintaining original palette
+" Terminal colors (for :terminal)
 if has('nvim')
   let g:terminal_color_0  = s:black
   let g:terminal_color_1  = s:red
